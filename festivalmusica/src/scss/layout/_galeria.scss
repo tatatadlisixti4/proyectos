@@ -1,0 +1,77 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.galeria {
+    @include m.contenedor;
+    &-imagenes {
+        img {
+            /* Comentario a gemini de pq el object fit no funciona si le heredo un height auto como es el caso haciendo que tenga que declarar uno fijo:
+            aa osea que auto hace que la img guarde las proporciones de la img dentro de un contenedor con tamaño x (por decir alguno) entonces al poner el cover no está 
+            forzando a tomar una altura determinanda puesto que esta depende de la propia img y no del contenedor eso? */
+            height: 20rem;
+            object-fit: cover;
+        }
+        @include m.grid(1, 2rem);
+        @include m.telefono{
+            @include m.grid(2, 2rem)
+        }
+        @include m.tablet {
+            @include m.grid(3, 2rem)
+        }
+        @include m.desktop {
+            @include m.grid(4, 2rem)
+        }
+    }
+}
+
+
+.modal {
+    position: fixed; // Posicionamiento fijado en funcion a la ventana y no al contenedor
+    inset: 0;
+    background-color: rgba(v.$negro, 0.5);
+    display: grid;
+    place-items: center; // Solo en grid, entra tanto en x como en y
+
+    animation: fadeIn ease-in 0.5s; // Es para usar los keyframes o animaciones, va el nombre de la anim, el estilo y la duracion
+
+    &.fade-out{  // La idea es que la clase .fade out se añada al momento de cerrar el modal asi se estiliza con la animacion del mismo nombre
+        animation: fadeOut ease-in 0.5s;
+    }
+    img {
+        width: min(90%, 100rem);
+    }
+}
+
+.btn-cerrar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: v.$blanco;
+    border: none;
+    color: v.$negro;
+    display: grid; // Carece de sentido al no tener hijos este boton
+    place-items: center; // Carece de sentido al no tener hijos este boton
+    font-weight: 700;
+    cursor: pointer;
+
+}
+
+// Para crear animaciones keyframes, este permite definir una linea de tiempo con css ! Establezco etapas y le doy css a cada una para dps tomar esta animacion y darle un estilo y tiempo.
+@keyframes fadeIn{
+    0%{
+        opacity: 0; // Opacity actua sobre la visibilidad del elemento (va del 0: completamente transparente(invisible)  1: completamente opaco (visible) 
+    }
+    
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes fadeOut{
+    0%{
+        opacity: 1;
+    }
+    
+    100%{
+        opacity: 0;
+    }
+}

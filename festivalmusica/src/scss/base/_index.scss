@@ -1,0 +1,5 @@
+// Se usa forward cuando se desea traer toda la hoja de estilo completa
+@forward 'normalize';  // Es necesario importar todo normalize 
+@forward 'variables';  // Puedo importar todas las variables para usarlas en mi app.scss o importartas dentro de cada hoja .scss (por ejem. globales.scss importa desde dentro variables, entonces no tendria sentido mantener variables en este indice, de momento.
+@forward 'globales';  
+
