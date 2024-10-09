@@ -1,0 +1,11 @@
+@font-face{
+    font-family: "krub-regular";
+    src: url("font/Krub-Regular.ttf") format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "krub-bold";
+    src: url(font/Krub-Bold.ttf);
+    font-weight: 700;
+}
